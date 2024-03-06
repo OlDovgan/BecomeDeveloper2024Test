@@ -2,6 +2,7 @@ package org.example;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Properties;
@@ -17,7 +18,11 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         Executor executor = new Executor();
         Properties properties = new Properties();
-        try (FileInputStream input = new FileInputStream("src/main/resources/app.properties")) {
+        try (InputStream input = Main.class.getResourceAsStream("/app.properties")) {
+            if (input == null) {
+                logger.log(Level.SEVERE, "Failed to load properties file");
+                return;
+            }
             properties.load(input);
         } catch (IOException e) {
             logger.log(Level.SEVERE, "Failed to load properties file", e);
@@ -36,7 +41,6 @@ public class Main {
         long endTime = System.nanoTime();
         System.out.println("Full  time : " + (endTime - startTime) / 1_000_000 + " milliseconds");
         System.out.println("Press Enter to exit");
-        scanner.hasNextLine();
-
+        scanner.nextLine(); // Use nextLine() instead of hasNextLine() to wait for input
     }
 }
