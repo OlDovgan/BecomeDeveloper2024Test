@@ -41,6 +41,6 @@ public class Main {
         long endTime = System.nanoTime();
         System.out.println("Full  time : " + (endTime - startTime) / 1_000_000 + " milliseconds");
         System.out.println("Press Enter to exit");
-        scanner.nextLine(); // Use nextLine() instead of hasNextLine() to wait for input
+        scanner.nextLine();
     }
 }
