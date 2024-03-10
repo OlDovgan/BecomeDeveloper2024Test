@@ -13,6 +13,6 @@ public class Executor {
         System.out.println("Execution time of " + methodName + " " +
                 (endTime - startTime) / 1_000_000 + " milliseconds");
         System.out.println(methodName.substring(4) + " = "+ result) ;
-        System.out.println();
+     //   System.out.println();
     }
 }

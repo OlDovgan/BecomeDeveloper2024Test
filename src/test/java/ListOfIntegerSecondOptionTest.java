@@ -8,12 +8,13 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class ListOfIntegerSecondOptionTest {
     List<String> list = new FileReader("10m_test_11.txt").readList();
     ListOfInteger listOfNumber = new ListOfInteger(list);
 
-    public ListOfIntegerSecondOptionTest() throws FileNotFoundException, URISyntaxException {
+    public ListOfIntegerSecondOptionTest() throws FileNotFoundException, URISyntaxException, ExecutionException, InterruptedException {
 
     }
 

@@ -8,13 +8,14 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class ListOfIntegerThirdOptionTest {
     List<String> list = new FileReader("10m_test_10.txt").readList();
     ListOfInteger listOfNumber = new ListOfInteger(list);
 
 
-    public ListOfIntegerThirdOptionTest() throws FileNotFoundException, URISyntaxException {
+    public ListOfIntegerThirdOptionTest() throws FileNotFoundException, URISyntaxException, ExecutionException, InterruptedException {
 
     }
 

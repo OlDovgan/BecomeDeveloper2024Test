@@ -36,10 +36,16 @@ public class Main {
         long startTimeFirst = System.nanoTime();
         listOfInteger.getAll();
         long endTimeFirst = System.nanoTime();
-        System.out.println("First  time : " + (endTimeFirst - startTimeFirst) / 1_000_000 + " milliseconds");
+        System.err.println("Test time with Threads: " + (endTimeFirst - startTimeFirst) / 1_000_000 + " milliseconds");
         System.err.println("--------------------------------------------------------");
-        long startTimeSecond = System.nanoTime();
 
+        long startTime2 = System.nanoTime();
+        listOfInteger.getAllVirtualThread();
+        long endTime2 = System.nanoTime();
+        System.err.println(" Test time with Virtual Threads : " + (endTime2- startTime2) / 1_000_000 + " milliseconds");
+        System.err.println("--------------------------------------------------------");
+
+        long startTimeSecond = System.nanoTime();
         Method[] methods = ListOfInteger.class.getMethods();
         for (Method method : methods) {
             if (method.getName().startsWith("find")) {
@@ -47,8 +53,9 @@ public class Main {
             }
         }
         long endTimeSecond = System.nanoTime();
-        System.out.println("Second  time : " + (endTimeSecond - startTimeSecond) / 1_000_000 + " milliseconds");
+        System.err.println("Test time without Threads: " + (endTimeSecond - startTimeSecond) / 1_000_000 + " milliseconds");
         System.err.println("--------------------------------------------------------");
+
         long endTime = System.nanoTime();
 
 

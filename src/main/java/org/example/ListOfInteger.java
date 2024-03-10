@@ -17,6 +17,24 @@ public class ListOfInteger {
                 .collect(Collectors.toList());
     }
     public void getAll() {
+        try (ExecutorService executorService = Executors.newFixedThreadPool(6)) {
+            List<Future<?>> futures = new ArrayList<>();
+            futures.add(executorService.submit(() -> executeAndTime(this::findMax, "Max")));
+            futures.add(executorService.submit(() -> executeAndTime(this::findMin, "Min")));
+            futures.add(executorService.submit(() -> executeAndTime(this::findMedian, "Median")));
+            futures.add(executorService.submit(() -> executeAndTime(this::findArithmetic, "Arithmetic")));
+            futures.add(executorService.submit(() -> executeAndTime(this::findLargestIncreasingSequence, "Largest Increasing Sequence")));
+            futures.add(executorService.submit(() -> executeAndTime(this::findLargestDecreasingSequence, "Largest Decreasing Sequence")));
+            for (Future<?> future : futures) {
+                future.get();
+            }
+        } catch (InterruptedException | ExecutionException e) {
+            logger.log(Level.SEVERE, "Error executing tasks", e);
+        }
+    }
+
+    public void getAllVirtualThread() {
+
         try (ExecutorService executorService = Executors.newVirtualThreadPerTaskExecutor()) {
             List<Future<?>> futures = new ArrayList<>();
             futures.add(executorService.submit(() -> executeAndTime(this::findMax, "Max")));
